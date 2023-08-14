@@ -10,7 +10,7 @@ const nasaImgRouter = express.Router();
 //   return res.status(200).json(res.locals.rawData);
 // });
 
-nasaImgRouter.get('/search', sessionController.isLoggedIn, yelpController.searchData, (req, res) => {
+nasaImgRouter.get('/search', nasaController.getData, (req, res) => {
   console.log('inside the nasaImgRouter');
   return res.status(200).json(res.locals.rawData);
 });

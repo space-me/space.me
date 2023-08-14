@@ -2,10 +2,13 @@ const nasaImgController = {};
 const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO';
 
 const baseSearchUrl = "https://images-api.nasa.gov/search?q="
-const query = '';
+const query = ''; // placeholder => hard coded for now
 nasaImgController.getData = (req, res, next) => {
-  fetch(`${baseSearchUrl}`)
-    .get('https://api.yelp.com/v3/businesses/search', fetchInfo.config)
+  fetch(`${baseSearchUrl}${query}`, {
+    headers:{
+      Authorization: `Bearer: ${TOKEN}`,
+    },
+  })
     .then((response) => {
       res.locals.rawData = response.data;
       return next();
@@ -19,9 +22,9 @@ nasaImgController.getData = (req, res, next) => {
     });
 };
 
-nasaImgController.searchData = (req, res, next) => {
-  console.log('entered search controller');
-  console.log(req.body);
-};
+// nasaImgController.searchData = (req, res, next) => {
+//   console.log('entered search controller');
+//   console.log(req.body);
+// };
 
 module.exports = nasaImgController;
