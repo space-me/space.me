@@ -4,9 +4,9 @@
   "description": "Learn about space.",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "NODE_ENV=production node server/server.js",
-    "start": "concurrently \"nodemon server/server.js\" \"NODE_ENV=development webpack serve --open --hot\"",
-    "dev": ""
+    "build": "NODE_ENV=production webpack",
+    "start": "NODE_ENV=production node server/server.js\"",
+    "dev": "concurrently \"nodemon server/server.js\" \"NODE_ENV=development webpack serve --open --hot\""
   },
   "author": "",
   "license": "ISC",
@@ -18,19 +18,13 @@
     "express": "^4.18.2",
     "html-webpack-plugin": "^5.5.3",
     "jsonwebtoken": "^9.0.1",
-    "pg": "^8.11.2",
     "react": "^18.2.0",
+    "react-cookie": "^5.0.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.10",
-    "@babel/preset-env": "^7.22.10",
-    "@babel/preset-react": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
-    "@jest/globals": "^29.6.2",
-    "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@types/cors": "^2.8.13",
     "@types/jest": "^29.5.3",
@@ -46,8 +40,6 @@
     "nodemon": "^3.0.1",
     "path": "^0.12.7",
     "prettier": "^3.0.1",
-    "sass": "^1.65.1",
-    "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",

@@ -4,13 +4,15 @@ const UserController = {
   // createUser is a function that queries
   createUser: async (req, res, next) => {
     // query holds the PostgreSQL query string
-    const query = 'SELECT XX FROM XX';
+    const query = '';
     try {
       const response = await db.query(query);
       res.locals.charactersData = response.rows;
     } catch (error) {
       next(error);
     }
+
+    return next();
   },
   forgotPassword: (req, res, next) => {},
 };
