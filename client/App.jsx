@@ -10,9 +10,12 @@ function App() {
       <Routes>
         <Route exact path='/home' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie}/>}></Route>
         <Route exact path='/login' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie}/>}></Route>
-        <Route exact path='/XX' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie}/>}></Route>
-        <Route exact path='*' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie}/>}></Route>
+        <Route exact path='/signup' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie}/>}></Route>
+        <Route exact path='/solarsystem' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie}/>}></Route>
+        <Route exact path='/favorites' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie}/>}></Route>
+        <Route exact path='/themes' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie}/>}></Route>
+        <Route exact path='*' element={<XX user={user} setUser={setUser} cookies={cookies} setCookie={setCookie}/>}></Route>
       </Routes>
     </>
   )
-})
+}

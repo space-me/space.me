@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
-
 const host = '0.0.0.0';
 const PORT = process.env.PORT || 3000;
 
