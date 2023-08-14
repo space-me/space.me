@@ -1,0 +1,13 @@
+{
+  "name": "space.me",
+  "version": "1.0.0",
+  "description": "Learn about space.",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "NODE_ENV=production node server/server.js",
+    "start": "concurrently \"nodemon server/server.js\" \"NODE_ENV=development webpack serve --open --hot\"",
+    "dev": ""
+  },
+  "author": "",
+  "license": "ISC"
+}
