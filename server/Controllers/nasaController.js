@@ -1,8 +1,7 @@
 const nasaImgController = {};
 const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO';
 
-const baseSearchUrl = '"https://images-api.nasa.gov/search
-?q''
+const baseSearchUrl = '"https://images-api.nasa.gov/search?q"
 
 nasaImgController.getData = (req, res, next) => {
   fetch()
