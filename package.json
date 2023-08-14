@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
     "bcrypt": "^5.1.0",
     "concurrently": "^8.2.0",
     "cors": "^2.8.5",
