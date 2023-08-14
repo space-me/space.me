@@ -11,7 +11,7 @@ const nasaImgRouter = express.Router();
 // });
 
 nasaImgRouter.get('/search', sessionController.isLoggedIn, yelpController.searchData, (req, res) => {
-  console.log('inside the yelp router');
+  console.log('inside the nasaImgRouter');
   return res.status(200).json(res.locals.rawData);
 });
 
