@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, Redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import Home from 'client/Containers/Home.jsx';
-import Favorites from 'client/Containers/Favorites.jsx';
-import Signup from 'client/Containers/Signup.jsx';
-import Login from 'client/Containers/Login.jsx';
-import SolarSystem from 'client/Containers/SolarSystem.jsx';
-import Themes from 'client/Containers/Themes.jsx';
-import NotFound from 'client/Containers/NotFound.jsx';
+import Home from './Components/Home.jsx';
+import Favorites from './Components/Favorites.jsx';
+import Signup from './Components/Signup.jsx';
+import Login from './Components/Login.jsx';
+import SolarSystem from './Components/SolarSystem.jsx';
+import Themes from './Components/Themes.jsx';
+import NotFound from './Components/NotFound.jsx';
 
 //
 function App() {
