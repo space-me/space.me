@@ -1,11 +1,25 @@
 // import Express functionality and init Port on 3000
 const express = require('express');
-const PORT = 3000;
+const cors = require('cors');
+const path = require('path');
+
+
+const host = '0.0.0.0';
+const PORT = process.env.PORT || 3000;
 
 // init const app as express server
 const app = express.use();
 
+app.use(cors());
+app.use(express.json());
 
+// Serve static assets
+app.use('/assets', express.static(path.resolve(__dirname, '../assets')));
+
+// Serve index.html
+app.get('/', (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, './client/index.html'));
+});
 
 // Catch-all route
 app.get('*', (req, res) => {
