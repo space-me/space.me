@@ -1,10 +1,10 @@
 const nasaImgController = {};
 const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO';
 
-const baseSearchUrl = '"https://images-api.nasa.gov/search?q="
-
+const baseSearchUrl = "https://images-api.nasa.gov/search?q="
+const query = '';
 nasaImgController.getData = (req, res, next) => {
-  fetch()
+  fetch(`${baseSearchUrl}`)
     .get('https://api.yelp.com/v3/businesses/search', fetchInfo.config)
     .then((response) => {
       res.locals.rawData = response.data;

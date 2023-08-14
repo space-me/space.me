@@ -1,11 +1,11 @@
 
 
 const UserController = {
-  createUser: () => {
+  createUser: (req, res, next) => {
 
   },
 
-  
+
 
 }
 
