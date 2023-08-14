@@ -1,1 +1,3 @@
-module.exports = {};
+function Favorites() {}
+
+export default Favorites;

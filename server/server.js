@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 // import routers
-// const nasaImgRouter = require('./Routers/nasaImg.js');
+const nasaImgRouter = require('./Routers/nasaImg.js');
 
 const host = '0.0.0.0';
 const PORT = process.env.PORT || 3000;
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-// app.use('/spaceImg', nasaImgRouter);
+app.use('/spaceImg', nasaImgRouter);
 
 // Catch-all route
 app.get('*', (req, res) => {

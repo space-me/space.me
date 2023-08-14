@@ -1,1 +1,3 @@
-module.exports = {};
+function SolarSystem() {}
+
+export default SolarSystem;

@@ -1,1 +1,3 @@
-module.exports = {};
+function Login() {}
+
+export default Login;

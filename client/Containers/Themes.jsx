@@ -1,1 +1,3 @@
-module.exports = {};
+function Themes() {}
+
+export default Themes;

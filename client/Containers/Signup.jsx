@@ -1,1 +1,3 @@
-module.exports = {};
+function Signup() {}
+
+export default Signup;
