@@ -6,7 +6,12 @@ const UserController = {
     const { username, email, password } = req.body;
 
     // Check if the username already exists
-    const checkForUser = `SELECT id FROM member WHERE username='${username}' `
+    const checkForUser = `SELECT COUNT(*) FROM member WHERE username = '${username}' OR email = '${email}'`;
+    try {
+      const response = await db.query(checkForUser);
+    } catch (error) {
+      next(error);
+    }
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
