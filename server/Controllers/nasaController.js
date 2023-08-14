@@ -1,21 +1,8 @@
 const nasaImgController = {};
-
-const fetchInfo = {};
-
 const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO';
 
-
-
-fetchInfo.config = {
-  headers: {
-    Authorization: `Bearer ${TOKEN}`,
-    Origin: 'localhost',
-    withCredentials: true,
-  },
-  params: {
-  
-  },
-};
+const baseSearchUrl = '"https://images-api.nasa.gov/search
+?q''
 
 nasaImgController.getData = (req, res, next) => {
   fetch()
