@@ -10,7 +10,7 @@ nasaImgController.getData = (req, res, next) => {
     },
   })
     .then((response) => {
-      res.locals.rawData = response.data;
+      res.locals.reultsObject = response;
       return next();
     })
     .catch((error) => {

@@ -13,8 +13,8 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       // filename: 'index.html',
-      title:'Development',
-      template: '/index.html',
+      title: 'Development',
+      template: './client/index.html',
     }),
   ],
 
