@@ -4,9 +4,9 @@ const Navbar = () => {
 	return (
 		<>
 			<header className="navbar">
-				<h1>Space.Me</h1>
-				<button>
-					<i className="menu fa-solid fa-bars fa-lg"></i>
+				<h1 className="navbar-title">Space.Me</h1>
+				<button className="navbar-menu">
+					<i className="fa-solid fa-bars fa-lg"></i>
 				</button>
 			</header>
 		</>
