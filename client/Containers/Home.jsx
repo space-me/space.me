@@ -1,13 +1,13 @@
-import React from 'react';
+// import React from 'react';
+
+import BigImage from '../Components/BigImage.jsx';
 
 const Home = () => {
-
-  
   return (
-    <> 
-      <p>hello world</p>
+    <>
+      <BigImage />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
