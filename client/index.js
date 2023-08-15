@@ -12,7 +12,7 @@ const root = createRoot(container);
 
 // render
 root.render(
-	<BrowserRouter>
-		<App tab="home" />
-	</BrowserRouter>
+  <BrowserRouter>
+    <App tab='home' />
+  </BrowserRouter>
 );
