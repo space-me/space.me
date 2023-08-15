@@ -13,7 +13,7 @@ function Login() {
           type='text'
           id='email'
           name='email'
-          placeholder='Enter your email here'
+          placeholder='Enter email here'
           pattern='[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g]'
           autoFocus
           required
@@ -23,7 +23,7 @@ function Login() {
           type='text'
           id='password'
           name='password'
-          placeholder='Enter your password here'
+          placeholder='Enter password here'
           required
         ></input>
         <input type='submit'></input>
