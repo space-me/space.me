@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Redirect } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Home from './Containers/Home.jsx';
 import Favorites from './Containers/Favorites.jsx';
@@ -8,14 +8,20 @@ import Login from './Containers/Login.jsx';
 import SolarSystem from './Containers/SolarSystem.jsx';
 import Themes from './Containers/Themes.jsx';
 import NotFound from './Containers/NotFound.jsx';
+import Navbar from './Containers/Navbar.jsx';
 
-//
+// App is the root container of our React-Redux application
 function App() {
+  // initialize user as state and setUser as its setter function
   const [user, setUser] = useState('testuser');
+  // initialize cookies as state, setUser as setter, removeCookie to remove Cookie
+  // Allows access and modification of cookies using React hooks
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
   return (
     <>
+      <Navbar />
+      {/* Home route  */}
       <Routes>
         <Route
           exact
@@ -30,6 +36,7 @@ function App() {
             />
           }
         />
+        {/* Login route */}
         <Route
           exact
           path='/login'
@@ -43,6 +50,7 @@ function App() {
             />
           }
         />
+        {/* Signup route */}
         <Route
           exact
           path='/signup'
@@ -56,6 +64,7 @@ function App() {
             />
           }
         />
+        {/* Solarsystem route */}
         <Route
           exact
           path='/solarsystem'
@@ -69,6 +78,7 @@ function App() {
             />
           }
         />
+        {/* Favorites */}
         <Route
           exact
           path='/favorites'
@@ -82,6 +92,7 @@ function App() {
             />
           }
         />
+        {/* Themes */}
         <Route
           exact
           path='/themes'
@@ -94,8 +105,8 @@ function App() {
             />
           }
         />
+        {/* 404 unknown route */}
         <Route
-          exact
           path='*'
           element={
             <NotFound
