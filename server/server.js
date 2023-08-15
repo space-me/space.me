@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 // import routers
-// const NasaImgRouter = require('./Routers/NasaApiRouter.js');
+const { NasaImgRouter } = require('./Routers/NasaApiRouter.js');
 const { UserRouter } = require('./Routers/UserRouter.js');
 
 const db = require('./database/UserModel.js');
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-// app.use('/spaceImg', NasaImgRouter);
+app.use('/api', NasaImgRouter);
 app.use('/user', UserRouter);
 
 // Catch-all route

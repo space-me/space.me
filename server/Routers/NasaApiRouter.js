@@ -11,9 +11,10 @@ const { NasaImgController } = require('../Controllers/NasaController.js');
 //   return res.status(200).json(res.locals.rawData);
 // });
 
-NasaImgRouter.get('/search', NasaImgController.getData, (req, res) => {
+NasaImgRouter.post('/search', NasaImgController.getData, (req, res) => {
   console.log('inside the NasaImgRouter');
   return res.status(200).json(res.locals.resultsObject);
 });
+//localhost:3000/api/search?=
 
 module.exports = { NasaImgRouter };
