@@ -2,23 +2,29 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  //
   const navigate = useNavigate();
+  //
   return (
     <div id='login-container'>
-      <form action='/user/login' method='POST'>
+      <form name='login' action='/user/login' method='POST'>
         <label for='email'>Email</label>
         <input
           type='text'
           id='email'
           name='email'
-          placeholder='example@email.com'
+          placeholder='Enter your email here'
+          pattern='[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g]'
+          autoFocus
+          required
         ></input>
         <label for='password'>password</label>
         <input
           type='text'
           id='password'
           name='password'
-          placeholder='totallysecurepassword'
+          placeholder='Enter your password here'
+          required
         ></input>
         <input type='submit'></input>
       </form>
