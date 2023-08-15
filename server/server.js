@@ -17,7 +17,8 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/spaceImg', nasaImgRouter);
+app.use('/api', NasaImgRouter);
+app.use('/user', UserRouter);
 
 // Serve static assets
 app.use('/assets', express.static(path.resolve(__dirname, '../assets')));
