@@ -10,7 +10,7 @@ import Themes from './Containers/Themes.jsx';
 import NotFound from './Containers/NotFound.jsx';
 import Navbar from './Containers/Navbar.jsx';
 
-//
+// App is the root container of our React-Redux application
 function App() {
 	// initialize user as state and setUser as its setter function
 	const [user, setUser] = useState('testuser');
@@ -64,6 +64,7 @@ function App() {
 						/>
 					}
 				/>
+				{/* Solarsystem route */}
 				<Route
 					exact
 					path="/solarsystem"
@@ -77,6 +78,7 @@ function App() {
 						/>
 					}
 				/>
+				{/* Favorites */}
 				<Route
 					exact
 					path="/favorites"
@@ -90,6 +92,7 @@ function App() {
 						/>
 					}
 				/>
+				{/* Themes */}
 				<Route
 					exact
 					path="/themes"
@@ -102,6 +105,7 @@ function App() {
 						/>
 					}
 				/>
+				{/* 404 unknown route */}
 				<Route
 					exact
 					path="*"
