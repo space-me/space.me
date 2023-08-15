@@ -9,4 +9,4 @@ const root = createRoot(container); // createRoot(container!) if you use TypeScr
 root.render(
   <BrowserRouter>
     <App tab='home' />
-  <BrowserRouter />);
+  </BrowserRouter>);
