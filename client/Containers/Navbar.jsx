@@ -12,14 +12,18 @@ const Navbar = () => {
         </h1>
         <div className='navbar-menu-dropdown'>
           <button className='navbar-menu'>
-            <i className='fa-solid fa-bars fa-xl'></i>
+            <i
+              className='fa-solid fa-bars fa-2xl'
+              style={{ color: '#eee' }}
+            ></i>
           </button>
           <div className='navbar-menu-dropdown-content'>
             <ul>
-              <li onClick={() => navigate('/login')}>Login</li>
-              <li onClick={() => navigate('/signup')}>Sign Up</li>
-              <li onClick={() => navigate('/solarsystem')}>Stars</li>
+              <li onClick={() => navigate('/favorites')}>Stars</li>
+              <li onClick={() => navigate('/solarsystem')}>Solar System</li>
               <li onClick={() => navigate('/themes')}>Themes</li>
+              <li onClick={() => navigate('/signup')}>Sign Up</li>
+              <li onClick={() => navigate('/login')}>Login</li>
             </ul>
           </div>
         </div>
