@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const nasaImgRouter = express.Router();
-const { nasaImgController } = require('../Controllers/nasaController.js');
+const NasaImgRouter = express.Router();
+const { NasaImgController } = require('../Controllers/NasaController.js');
 
 // router.get('/', sessionController.isLoggedIn, yelpController.getData, (req, res) => {
 //   return res.status(200).json(res.locals.rawData);
@@ -11,9 +11,9 @@ const { nasaImgController } = require('../Controllers/nasaController.js');
 //   return res.status(200).json(res.locals.rawData);
 // });
 
-nasaImgRouter.get('/search', nasaImgController.getData, (req, res) => {
-  console.log('inside the nasaImgRouter');
+NasaImgRouter.get('/search', NasaImgController.getData, (req, res) => {
+  console.log('inside the NasaImgRouter');
   return res.status(200).json(res.locals.resultsObject);
 });
 
-module.exports = nasaImgRouter;
+module.exports = { NasaImgRouter };

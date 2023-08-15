@@ -1,9 +1,9 @@
-const nasaImgController = {};
+const NasaImgController = {};
 const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO';
 
 const baseSearchUrl = 'https://images-api.nasa.gov/search?q=';
 const query = 'mars'; // placeholder => hard coded for now
-nasaImgController.getData = (req, res, next) => {
+NasaImgController.getData = (req, res, next) => {
   fetch(`${baseSearchUrl}${query}`, {
     headers: {
       Authorization: `Bearer: ${TOKEN}`,
@@ -27,4 +27,4 @@ nasaImgController.getData = (req, res, next) => {
 //   console.log(req.body);
 // };
 
-module.exports = { nasaImgController };
+module.exports = { NasaImgController };
