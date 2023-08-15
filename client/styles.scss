@@ -3,6 +3,16 @@ body {
   margin: 0;
 }
 
+li {
+  list-style-type: none;
+  font-size: 1.25rem;
+  margin: 1rem 0;
+  color: #ddd;
+  cursor: pointer;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid black;
+}
+
 .navbar {
   display: flex;
   height: 3rem;
@@ -25,9 +35,20 @@ body {
 
 .navbar-menu-dropdown {
   position: relative;
-  display: inline-block
+  display: inline-block;
 }
 
 .navbar-menu-dropdown-content {
-  
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #333;
+  min-width: 10rem;
+  width: 20rem;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.navbar-menu-dropdown:hover .navbar-menu-dropdown-content {
+  display: block;
 }

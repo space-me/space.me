@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Redirect } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Home from './Containers/Home.jsx';
 import Favorites from './Containers/Favorites.jsx';

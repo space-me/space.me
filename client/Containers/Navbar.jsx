@@ -1,16 +1,31 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-	return (
-		<>
-			<header className="navbar">
-				<h1 className="navbar-title">space.me</h1>
-				<button className="navbar-menu">
-					<i className="fa-solid fa-bars fa-xl"></i>
-				</button>
-			</header>
-		</>
-	);
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <header className='navbar'>
+        <h1 className='navbar-title' onClick={() => navigate('/')}>
+          Space.me
+        </h1>
+        <div className='navbar-menu-dropdown'>
+          <button className='navbar-menu'>
+            <i className='fa-solid fa-bars fa-xl'></i>
+          </button>
+          <div className='navbar-menu-dropdown-content'>
+            <ul>
+              <li onClick={() => navigate('/login')}>Login</li>
+              <li onClick={() => navigate('/signup')}>Sign Up</li>
+              <li onClick={() => navigate('/solarsystem')}>Stars</li>
+              <li onClick={() => navigate('/themes')}>Themes</li>
+            </ul>
+          </div>
+        </div>
+      </header>
+    </>
+  );
 };
 
 export default Navbar;
