@@ -3,22 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 function Signup() {
   const navigate = useNavigate();
-  // validateInputs is a function that
-  // const validateInputs = () => {
-  //   // init email as
-  //   let email = document.forms['signup']['email'].value;
-  //   // check if email is a valid email (i.e. contains letters, numbers, periods or dashes interspersed by an @)
-  //   if (email !== email.replace(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g))
-  //     alert('email must be a valid email');
-  // };
   return (
     <div id='signup-container'>
-      <form
-        name='signup'
-        action='/user/signup'
-        method='POST'
-        // onSubmit={() => validateInputs()}
-      >
+      <form name='signup' action='/user/signup' method='POST'>
         <label for='username'>Username</label>
         <input
           type='text'
