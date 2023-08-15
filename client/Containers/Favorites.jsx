@@ -6,8 +6,8 @@ function Favorites() {
   const getImages = () => {
     fetch('');
   };
-  useEffect()
-  //
+  // useEffect()
+  // return array with all favorite images
   return <p>I'm favorites</p>;
 }
 

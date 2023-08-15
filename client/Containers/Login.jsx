@@ -5,7 +5,7 @@ function Login() {
   const navigate = useNavigate();
   return (
     <div id='login-container'>
-      <form action='/login' method='POST'>
+      <form action='/user/login' method='POST'>
         <label for='email'>Email</label>
         <input
           type='text'
