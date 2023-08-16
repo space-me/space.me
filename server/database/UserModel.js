@@ -1,11 +1,12 @@
-
-const { Pool } = require('pg');
+require('dotenv').config();
+const { Pool } = require('pg')
 
 const PG_URI = process.env.PG_URI;
 
 const pool = new Pool({
   connectionString: PG_URI,
 });
+
 
 // We export an object that contains a property called query, a function that returns the invocation of pool.query() after logging the query
 // This will be required in the controllers to be the access point to the database
