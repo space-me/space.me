@@ -1,6 +1,7 @@
 const server = 'http://localhost:3000';
 const request = require('supertest');
 const fs = require('fs');
+const bcrypt = require('bcrypt');
 
 describe('User Login', () => {
   //UserController.createUser test
@@ -44,7 +45,11 @@ describe('User Login', () => {
       return request(server)
         .post('/user/login')
         .send({ username, email, password })
-        .
+        .then((response) => {
+          const passwordMatch = await bcrypt.compare(password, response.body.password);
+          expect(passwordMatch).toEqual(true);
+          expect(response.body.password).not.toEqual(password);
+        });
     });
   });
 
