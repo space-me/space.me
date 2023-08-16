@@ -2,7 +2,8 @@ const db = require("../database/UserModel.js");
 const bcrypt = require("bcrypt");
 
 const UserController = {
-  // createUser is a function that queries
+// ---------------------------------- CREATE USER FUNCTION -----------------------------------------------------
+
   createUser: async (req, res, next) => {
     const { username, email, password } = req.body;
 
@@ -11,9 +12,10 @@ const UserController = {
     try {
       const response = await db.query(checkForUser, [username, email]);
       const userCount = response.rows[0].count; // Extract the count value
-      console.log("response.rows: ", response.rows);
-      console.log("userCount OR  response.rows[0].count: ", userCount);
+      // console.log("response.rows: ", response.rows);
+      // console.log("userCount OR  response.rows[0].count: ", userCount);
       if (userCount !== "0") {
+        console.log('username/ email taken')
         res.sendStatus(401);
         return; // Return here to prevent further execution
       }
@@ -26,10 +28,8 @@ const UserController = {
         },
       });
     }
-
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-
     // Insert the user into the database
     const insertUser = `INSERT INTO member (username, email, password) VALUES ($1, $2, $3)`;
     try {
@@ -38,8 +38,10 @@ const UserController = {
         email,
         hashedPassword,
       ]);
-      console.log("line 36: ", response[0]);
-      res.locals.userID = response[0];
+      // console.log("line 36: ", response[0]);
+      const grabUserIdQuery = 'SELECT id FROM member WHERE email = $1'
+      const idResponse = await db.query(grabUserIdQuery, [email]);
+      res.locals.userID = idResponse.rows[0].id;
     } catch (error) {
       return next({
         log: `Error occured in UserController.createUser, line 39 error: ${error}`, // to the develpoper
@@ -52,12 +54,12 @@ const UserController = {
     return next();
   },
 
-  // for login middleware chain
-  //   Verify that the user username and password exist and match.
+// ---------------------------------- VERIFY USER FUNCTION -----------------------------------------------------
+
   verifyUser: async (req, res, next) => {
     const { email, password } = req.body;
-    console.log("email: ", email);
-    console.log("password: ", password);
+    // console.log("email: ", email);
+    // console.log("password: ", password);
 
     //Verify the username exists before checking password
     const findUser = 'SELECT * FROM member WHERE email = $1';
@@ -67,8 +69,10 @@ const UserController = {
       // if username is true and (bycrypt.compare(password and username.password)) is true
       const passwordFromDB = await bcrypt.compare(password, hashedPassword);
       if (email && passwordFromDB) {
-        res.locals.userID = response.rows[0].id;
-        console.log("res.locals.userID: ", res.locals.userID);
+        const grabUserIdQuery = 'SELECT id FROM member WHERE email = $1'
+        const idResponse = await db.query(grabUserIdQuery, [email]);
+        res.locals.userID = idResponse.rows[0].id;
+        console.log("res.locals.userID from verify function: ", res.locals.userID);
         return next();
       }
       // res.locals.userId = response[0]
@@ -84,8 +88,9 @@ const UserController = {
     }
   },
 
-  //Stretch Feature for now.
+// ---------------------------------- FORGOT PASSWORD FUNCTION -----------------------------------------------------
   // forgotPassword: (req, res, next) => {},
+    //Stretch Feature for now.
 };
 
 module.exports = { UserController };
