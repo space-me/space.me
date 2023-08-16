@@ -12,14 +12,14 @@ UserRouter.post(
   }
 );
 
-// UserRouter.post(
-//   '/login',
-//   UserController.verifyUser,
-//   // SessionController.startSession,
-//   // CookieController.setUUID,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.userID);
-//   }
-// );
+UserRouter.post(
+  '/login',
+  UserController.verifyUser,
+  // SessionController.startSession,
+  // CookieController.setUUID,
+  (req, res) => {
+    return res.status(200).json(res.locals.userID);
+  }
+);
 
 module.exports = { UserRouter };
