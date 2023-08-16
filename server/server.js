@@ -7,9 +7,10 @@ const { NasaImgRouter } = require('./Routers/NasaApiRouter.js');
 const { UserRouter } = require('./Routers/UserRouter.js');
 
 const db = require('./database/UserModel.js');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const host = '0.0.0.0';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // init const app as express server
 const app = express();
@@ -46,7 +47,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-app.listen(PORT, host, () => {
+app.listen(PORT, () => {
   console.log(`server started on ${PORT}`);
 });
 

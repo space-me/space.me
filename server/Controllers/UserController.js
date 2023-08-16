@@ -1,8 +1,8 @@
-const db = require("../database/UserModel.js");
-const bcrypt = require("bcrypt");
+const db = require('../database/UserModel.js');
+const bcrypt = require('bcrypt');
 
 const UserController = {
-// ---------------------------------- CREATE USER FUNCTION -----------------------------------------------------
+  // ---------------------------------- CREATE USER FUNCTION -----------------------------------------------------
 
   createUser: async (req, res, next) => {
     const { username, email, password } = req.body;
@@ -12,10 +12,10 @@ const UserController = {
     try {
       const response = await db.query(checkForUser, [username, email]);
       const userCount = response.rows[0].count; // Extract the count value
-      // console.log("response.rows: ", response.rows);
+      console.log('userCount: ', userCount);
       // console.log("userCount OR  response.rows[0].count: ", userCount);
-      if (userCount !== "0") {
-        console.log('username/ email taken')
+      if (userCount !== '0') {
+        console.log('username/ email taken');
         res.sendStatus(401);
         return; // Return here to prevent further execution
       }
@@ -24,7 +24,7 @@ const UserController = {
         log: `Error occured in UserController.createUser, line 21 error: ${error}`, // to the develpoper
         status: 500,
         message: {
-          err: "an error occured, something went wrong", // message to the user
+          err: 'an error occured, something went wrong', // message to the user
         },
       });
     }
@@ -39,7 +39,7 @@ const UserController = {
         hashedPassword,
       ]);
       // console.log("line 36: ", response[0]);
-      const grabUserIdQuery = 'SELECT id FROM member WHERE email = $1'
+      const grabUserIdQuery = 'SELECT id FROM member WHERE email = $1';
       const idResponse = await db.query(grabUserIdQuery, [email]);
       res.locals.userID = idResponse.rows[0].id;
     } catch (error) {
@@ -47,19 +47,20 @@ const UserController = {
         log: `Error occured in UserController.createUser, line 39 error: ${error}`, // to the develpoper
         status: 500,
         message: {
-          err: "an error occured, something went wrong", // message to the user
+          err: 'an error occured, something went wrong', // message to the user
         },
       });
     }
     return next();
   },
 
-// ---------------------------------- VERIFY USER FUNCTION -----------------------------------------------------
+  // ---------------------------------- VERIFY USER FUNCTION -----------------------------------------------------
 
   verifyUser: async (req, res, next) => {
     const { email, password } = req.body;
-    // console.log("email: ", email);
-    // console.log("password: ", password);
+    console.log('body ', req.body);
+    console.log('email: ', email);
+    console.log('password: ', password);
 
     //Verify the username exists before checking password
     const findUser = 'SELECT * FROM member WHERE email = $1';
@@ -68,29 +69,40 @@ const UserController = {
       const hashedPassword = response.rows[0].password;
       // if username is true and (bycrypt.compare(password and username.password)) is true
       const passwordFromDB = await bcrypt.compare(password, hashedPassword);
+      console.log('passwordFromDB true or false: ', passwordFromDB);
+
       if (email && passwordFromDB) {
-        const grabUserIdQuery = 'SELECT id FROM member WHERE email = $1'
+        const grabUserIdQuery = 'SELECT id FROM member WHERE email = $1';
         const idResponse = await db.query(grabUserIdQuery, [email]);
         res.locals.userID = idResponse.rows[0].id;
-        console.log("res.locals.userID from verify function: ", res.locals.userID);
+        console.log(
+          'res.locals.userID from verify function: ',
+          res.locals.userID
+        );
         return next();
+      } else {
+        return next({
+          log: `Error occured in UserController.verifyUser`, // to the developer
+          status: 400,
+          message: {
+            err: 'an error occured, something went wrong', // message to the user
+          },
+        });
       }
-      // res.locals.userId = response[0]
-      //
     } catch (error) {
       return next({
         log: `Error occured in verifyUser Catch: ${error}`, // to the develpoper
-        status: 400,
+        status: 500,
         message: {
-          err: "username or password incorrect", // message to the user
+          err: 'username or password incorrect', // message to the user
         },
       });
     }
   },
 
-// ---------------------------------- FORGOT PASSWORD FUNCTION -----------------------------------------------------
+  // ---------------------------------- FORGOT PASSWORD FUNCTION -----------------------------------------------------
   // forgotPassword: (req, res, next) => {},
-    //Stretch Feature for now.
+  //Stretch Feature for now.
 };
 
 module.exports = { UserController };

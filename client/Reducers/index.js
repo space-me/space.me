@@ -6,8 +6,8 @@ import userReducer from './userReducer';
 
 // combine reducers
 const reducers = combineReducers({
-	nasa: nasaReducer,
-	user: userReducer,
+  // nasa: nasaReducer,
+  user: userReducer,
 });
 
 // make the combined reducers available for import

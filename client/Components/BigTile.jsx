@@ -1,11 +1,10 @@
 import React from 'react';
 import FavStar from './FavStar';
 
-const BigTile = () => {
+const BigTile = ({image, title}) => {
 	return (
 		<div className="big-tile">
-			<img src="" alt="" />
-			<FavStar />
+			<img src={image} alt={title} />
 		</div>
 	);
 };
