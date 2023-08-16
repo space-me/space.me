@@ -14,9 +14,5 @@ const root = createRoot(container);
 root.render(
   <BrowserRouter>
     <App tab='home' />
-<<<<<<< HEAD
-  </BrowserRouter>);
-=======
   </BrowserRouter>
 );
->>>>>>> dev
