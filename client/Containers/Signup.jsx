@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 // renders Signup page components
 function Signup() {
-	
-	const navigate = useNavigate();
-	
+  const navigate = useNavigate();
+
   const inputValidate = () => {
     let password = document.forms['signup']['password'].value;
     let confirmPassword = document.forms['signup']['confirmpassword'].value;
@@ -13,8 +12,8 @@ function Signup() {
       alert('passwords must match');
       return false;
     }
-	};
-	
+  };
+
   return (
     <div className='form-container'>
       <div className='login-container'>

@@ -38,7 +38,11 @@ describe('User Login', () => {
     //The stored password is hashed and different from the original input password.
     it('The stored password is hashed and different from the original input password.', () => {
       //Dummy data
-      
+      const username = 'Jeremy';
+      const password = 'Jeremy';
+
+      return request(server)
+        .post('/user/login')
     });
   });
 

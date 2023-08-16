@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SpaceFact() {
+function SpaceFact({title, description}) {
 
   return (
     <>

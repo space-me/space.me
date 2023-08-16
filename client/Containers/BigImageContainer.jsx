@@ -7,8 +7,8 @@ const BigImageContainer = ({image, title, description}) => {
     <>
       <main className='main'>
         <div className='main-big-image-container'>
-          <BigImage image={image} />
-          <SpaceFact titel={title} description={description} />
+          <BigImage image={image} title={title} />
+          <SpaceFact title={title} description={description} />
         </div>
       </main>
     </>
