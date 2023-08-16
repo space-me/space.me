@@ -3,7 +3,8 @@ const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO';
 const NasaImgController = {
 
  getData: async (req, res, next) => {
-  const { query } = req.body;
+  // const { query } = req.body;
+    const query = 'pluto'
   try {
     
     const response = await fetch(`https://images-api.nasa.gov/search?q=${query}&media_type=image`, {});
@@ -11,7 +12,7 @@ const NasaImgController = {
       const data = await response.json();
 
       const results = [];
-      for(let i =0; i< 10; i++){
+      for(let i =0; i< 20; i++){
         //fetch the url that contains the array of different image sizes
         let imagesArrayFetch = await fetch(data.collection.items[i].href, {})
         let imagesArray = await imagesArrayFetch.json()

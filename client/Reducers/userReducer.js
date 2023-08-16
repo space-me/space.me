@@ -2,8 +2,8 @@ import * as types from '../Constants/actionTypes';
 
 // initialState is an object that contains the string username, the string userID, and the array favorites
 const initialState = {
-  username: '',
   userID: '',
+  username: '',
   favorites: [],
 };
 

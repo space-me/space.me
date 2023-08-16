@@ -10,24 +10,32 @@ function Login() {
   // dispatch is an instance of useDispatch that dispatches actions to Redux reducers
   const dispatch = useDispatch();
   // userLogin retrieves email and password information and sends a POST request to frontend
-  const userLogin = () => {
+  const userLogin = (e) => {
+    e.preventDefault();
     // extract email and password values from input fields
     const email = document.forms['login']['email'].value;
     const password = document.forms['login']['password'].value;
     // send POST request to login endpoint
     fetch('/user/login', {
       method: 'POST',
-      body: { email: email, password: password },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email, password: password }),
     })
       // parse response from JSON into JS
       .then((response) => response.json())
       // then, dispatch login action to userReducer with payload loginData
       .then((loginData) => {
-        dispatch(loginActionCreator(loginData));
+        if (!loginData || !loginData.err) {
+          // console.log('logindata from Login.jsx', loginData);
+          dispatch(loginActionCreator(loginData));
+          navigate('/');
+        }
       })
       // throw new error if fetch request runs into any errors
       .catch((err) => {
-        throw new Error('Error logging user in:', err);
+        console.log('Error logging user in:', err);
       });
   };
 
@@ -38,9 +46,7 @@ function Login() {
         <form
           className='login-form'
           name='login'
-          onSubmit={userLogin}
-          action='/user/login'
-          method='POST'
+          onSubmit={(e) => userLogin(e)}
         >
           <label htmlFor='email'>Email</label>
           <input
@@ -48,7 +54,7 @@ function Login() {
             id='email'
             name='email'
             placeholder='Enter your email here'
-            pattern='[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g]'
+            // pattern='^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
             autoFocus
             required
           ></input>

@@ -1,16 +1,47 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { loginActionCreator } from '../Actions/actions';
 // renders Signup page components
 function Signup() {
   const navigate = useNavigate();
-
-  const inputValidate = () => {
-    let password = document.forms['signup']['password'].value;
-    let confirmPassword = document.forms['signup']['confirmpassword'].value;
+  // dispatch is an instance of useDispatch that dispatches actions to Redux reducers
+  const dispatch = useDispatch();
+  const inputValidate = (e) => {
+    e.preventDefault();
+    const username = document.forms['signup']['username'].value;
+    const email = document.forms['signup']['email'].value;
+    const password = document.forms['signup']['password'].value;
+    const confirmPassword = document.forms['signup']['confirmPassword'].value;
     if (password !== confirmPassword) {
       alert('passwords must match');
       return false;
+    } else {
+      fetch('/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+        }),
+      })
+        // parse response from JSON into JS
+        .then((response) => response.json())
+        // then, dispatch login action to userReducer with payload loginData
+        .then((signupData) => {
+          if (!signupData || !signupData.err) {
+            // console.log('signupData from Login.jsx', signupData);
+            dispatch(loginActionCreator(signupData));
+            navigate('/');
+          }
+        })
+        // throw new error if fetch request runs into any errors
+        .catch((err) => {
+          console.log('Error logging user in:', err);
+        });
     }
   };
 
@@ -21,11 +52,9 @@ function Signup() {
         <form
           className='login-form'
           name='signup'
-          action='/user/signup'
-          method='POST'
-          onSubmit={inputValidate}
+          onSubmit={(e) => inputValidate(e)}
         >
-          <label for='username'>Username</label>
+          <label htmlFor='username'>Username</label>
           <input
             type='text'
             id='username'
@@ -34,16 +63,16 @@ function Signup() {
             autoFocus
             required
           ></input>
-          <label for='email'>Email</label>
+          <label htmlFor='email'>Email</label>
           <input
             type='text'
             id='email'
             name='email'
             placeholder='Enter your email'
-            pattern='[^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$]'
+            // pattern='^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
             required
           ></input>
-          <label for='password'>Password</label>
+          <label htmlFor='password'>Password</label>
           <input
             type='text'
             id='password'
@@ -51,7 +80,7 @@ function Signup() {
             placeholder='Enter your password'
             required
           ></input>
-          <label for='confirmPassword'>Confirm Password</label>
+          <label htmlFor='confirmPassword'>Confirm Password</label>
           <input
             type='text'
             id='confirmPassword'

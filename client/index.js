@@ -17,6 +17,6 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <App tab='home' />
-    </BrowserRouter>{' '}
+    </BrowserRouter>
   </Provider>
 );

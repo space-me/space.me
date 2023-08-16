@@ -4,14 +4,22 @@ import SmallTileContainer from '../Containers/SmallTileContainer.jsx';
 
 const Home = () => {
   const [bigImage, setBigImage] = useState(null);
+  const [smallImages, setSmallImages] = useState(null);
+  
   useEffect(() => {
     async function fetchBigImage() {
       const response = await fetch('/api/apod');
       const data = await response.json();
-      console.log(data);
       setBigImage(data);
     }
+    async function fetchSmallImages() {
+      const response = await fetch('api/search');
+      const data = await response.json();
+      console.log(data)
+      setSmallImages(data);
+    }
     fetchBigImage();
+    fetchSmallImages();
   }, []);
 
   return (
@@ -22,7 +30,7 @@ const Home = () => {
         description={bigImage ? bigImage.description : 'fetching image...'}
       />
       <button className='main-button'>Give me more, Spaceman</button>
-      <SmallTileContainer />
+      <SmallTileContainer images={smallImages ? smallImages : []} />
     </div>
   );
 };
