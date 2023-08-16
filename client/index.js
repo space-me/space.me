@@ -2,7 +2,9 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from './App.jsx';
+import store from './store';
 import './styles.scss';
 
 // init parent container at root element
@@ -12,7 +14,9 @@ const root = createRoot(container);
 
 // render
 root.render(
-  <BrowserRouter>
-    <App tab='home' />
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App tab='home' />
+    </BrowserRouter>{' '}
+  </Provider>
 );

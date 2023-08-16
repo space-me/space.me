@@ -43,6 +43,8 @@ describe('User Login', () => {
 
       return request(server)
         .post('/user/login')
+        .send({ username, email, password })
+        .
     });
   });
 
