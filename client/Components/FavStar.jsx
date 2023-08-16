@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { loginActionCreator } from '../Actions/actions';
 
-// favorite star Icon
+// renders favorite star icon on top-right corner of all images
 function FavStar({ imageData }) {
+  // sets isFavorite as state, setIsFavorite as setter
   const [isFavorite, setIsFavorite] = useState(false);
   const userID = useSelector((state) => state.user.userID);
   // dispatch is an instance of useDispatch that dispatches actions to Redux reducers
   const dispatch = useDispatch();
-	
 
   const handleClick = () => {
     async function saveFav() {
@@ -19,12 +19,12 @@ function FavStar({ imageData }) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userID,
+          memberID: userID,
           title: imageData.title,
           href: imageData.largeImage,
           description: imageData.description,
         }),
-      }).catch((err) => console.log(err));
+      }).catch((err) => console.log('Error adding a favorite:', err));
       const data = await response.json();
       console.log('data on line 26 of FavStar is:', data);
       dispatch(loginActionCreator(data));

@@ -1,4 +1,7 @@
-const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO';
+
+// const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO'; // each of these tokens has 1000 an hour
+const TOKEN = 'B3e2sWwsdoF0QZIP0TNd6PAHV2ALwDMB5uGbgFfx'; // newest token
+// const TOKEN = 'JhRxyugXdHZyjcua0oEXcxsLxWvjbxTwB2ZAuxmU'; // use this token next
 
 const NasaImgController = {
 

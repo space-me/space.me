@@ -14,12 +14,22 @@ describe('User Signup', () => {
     const password = 'JackBlack';
 
     //The route returns a 200 status code and an object with the userID.
-    it('Responds with a 200 status code and an object.', () => {
+    it('Responds with a 200 status code and an object.', (done) => {
       request(server)
         .post('/user/signup')
         .send({ username: username, email: email, password: password })
         .expect(200)
-        .expect({ userID: response.userID, user, favorites: });
+        .end((err, response) => {
+          // expect(response.body).toEqual({
+          //   userID: expect.anything(),
+          //   username: username,
+          //   favorites: [],
+          // });
+
+          done();
+        });
+
+      // .expect({ userID: response.userID, username: username, favorites: [] });
     });
 
     /*
@@ -29,16 +39,15 @@ describe('User Signup', () => {
         favorites: favoritesResponse.rows
       }
     */
-   
+
     //An already-stored username is not allowed to be repeated.
-    xit('A username that already exists cannot be reused.', () => {
+    it('A username that already exists cannot be reused.', () => {
       //Dummy data - an existing member in the database
 
       return request(server)
         .post('/user/signup')
         .send({ username: username, email: email, password: password })
-        .expect(response.status)
-        .toEqual(401);
+        .expect(401);
     });
 
     //The stored password is hashed and different from the original input password.

@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import BigTile from '../Components/BigTile';
+import { useSelector } from 'react-redux';
 
 // Favorites contains all of the images that will be fetched from database
 function Favorites() {
   const imageArray = ['get favs from state'];
+  const favorites = useSelector((state) => state.user.favorites);
 
-  const bigTiles = imageArray.map((e) => (
+  const bigTiles = favorites.map((e) => (
     <BigTile image={e.href} title={e.title} />
   ));
 
