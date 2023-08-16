@@ -1,16 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// renders Signup page components
 function Signup() {
 	const navigate = useNavigate();
-	// validateInputs is a function that
-	// const validateInputs = () => {
-	//   // init email as
-	//   let email = document.forms['signup']['email'].value;
-	//   // check if email is a valid email (i.e. contains letters, numbers, periods or dashes interspersed by an @)
-	//   if (email !== email.replace(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g))
-	//     alert('email must be a valid email');
-	// };
+	const inputValidate = () => {
+		let password = document.forms['signup']['password'].value;
+		let confirmPassword = document.forms['signup']['confirmpassword'].value;
+		if (password !== confirmPassword) {
+			alert('passwords must match');
+			return false;
+		}
+	};
 	return (
 		<div className="form-container">
 			<div className="login-container">
@@ -20,7 +21,7 @@ function Signup() {
 					name="signup"
 					action="/user/signup"
 					method="POST"
-					// onSubmit={() => validateInputs()}
+					onSubmit={inputValidate}
 				>
 					<label for="username">Username</label>
 					<input

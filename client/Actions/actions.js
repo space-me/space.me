@@ -1,5 +1,11 @@
 import * as types from '../Constants/actionTypes';
 
-const actions = {};
+// export loginActionCreator
+export const loginActionCreator = (loginData) => ({
+  type: types.LOGIN,
+  payload: loginData,
+});
+
+// const actions = {};
 
 export default actions;
