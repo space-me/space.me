@@ -3,13 +3,13 @@ import BigImageContainer from '../Containers/BigImageContainer.jsx';
 import SmallTileContainer from '../Containers/SmallTileContainer.jsx';
 
 const Home = () => {
-  return (
-    <>
-      <BigImageContainer />
-      <button className='main-button'>Give me Spaceman</button>
-      <SmallTileContainer />
-    </>
-  );
+	return (
+		<div className="home">
+			<BigImageContainer />
+			<button className="main-button">Give me more, Spaceman</button>
+			<SmallTileContainer />
+		</div>
+	);
 };
 
 export default Home;
