@@ -1,6 +1,12 @@
 import * as types from '../Constants/actionTypes';
 
-const actions = {};
+// export loginActionCreator
+export const loginActionCreator = (loginData) => ({
+  type: types.LOGIN,
+  payload: loginData,
+});
+
+// const actions = {};
 
 // EXAMPLE FROM UNIT 13
 // actions.createMarketThunk = (lastMarketId, location) => (dispatch) => {
@@ -24,4 +30,4 @@ const actions = {};
 // 		.catch((err) => console.log('Error in createMarketThunk fetch:', err));
 // };
 
-export default actions;
+// export default actions;

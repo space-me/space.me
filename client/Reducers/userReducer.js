@@ -1,10 +1,13 @@
 import * as types from '../Constants/actionTypes';
 
-const initialState = {};
+// need to define initialState
+const initialState = {
+  //
+};
 
 const userReducer = (state = initialState, action) => {
-	switch (action.type) {
-	}
+  switch (action.type) {
+  }
 };
 
 export default userReducer;

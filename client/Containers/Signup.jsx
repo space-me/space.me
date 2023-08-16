@@ -4,9 +4,22 @@ import { useNavigate } from 'react-router-dom';
 // renders Signup page components
 function Signup() {
   const navigate = useNavigate();
+  const inputValidate = () => {
+    let password = document.forms['signup']['password'].value;
+    let confirmPassword = document.forms['signup']['confirmpassword'].value;
+    if (password !== confirmPassword) {
+      alert('passwords must match');
+      return false;
+    }
+  };
   return (
     <div id='signup-container'>
-      <form name='signup' action='/user/signup' method='POST'>
+      <form
+        name='signup'
+        action='/user/signup'
+        method='POST'
+        onSubmit={inputValidate}
+      >
         <label for='username'>Username</label>
         <input
           type='text'
