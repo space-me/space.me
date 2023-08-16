@@ -1,15 +1,20 @@
 import * as types from '../Constants/actionTypes';
 
-// need to define initialState
+// initialState is an object that contains the string username, the string userID, and the array favorites
 const initialState = {
   username: '',
+  userID: '',
   favorites: [],
 };
 
 const userReducer = (state = initialState, action) => {
+  const newState = action.payload;
+  // JSON.parse(JSON.stringify(initialState));
+  // const newState = {...initialState};
   switch (action.type) {
-    case LOGIN: {
-      console.log('logging in');
+    // log user in
+    case types.LOGIN: {
+      return newState;
     }
   }
 };
