@@ -6,7 +6,7 @@ const Home = () => {
 	return (
 		<div className="home">
 			<BigImageContainer />
-			<button className="main-button">Give me Spaceman</button>
+			<button className="main-button">Give me more, Spaceman</button>
 			<SmallTileContainer />
 		</div>
 	);

@@ -138,6 +138,14 @@ input {
 
 // Login + Signup Styles
 
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 10rem;
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -147,6 +155,7 @@ input {
   height: 50vh;
   background-color: #eee;
   color: #333;
+  border-radius: 1rem;
 }
 
 .login-form {
@@ -163,11 +172,24 @@ input {
 
 .login-form-button {
   width: 10rem;
+  height: 2rem;
+  border-radius: .5rem;
+  border: none;
+  border-bottom: 2px solid black;
+  background-color: #333;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.login-form-button:hover{
+  background-color: #444;
 }
 
 .login-form-links {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: .5rem;
   margin-top: 2rem;
 }
 
@@ -176,4 +198,32 @@ input {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+// Favorites Styles
+
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.favorites-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem;
+  width: 76rem;
+}
+
+.favorites-title {
+  margin-left: 15rem;
+}
+
+.big-tile {
+  position: relative;
+  width: 25rem;
+  height: 25rem;
+  min-width: 15rem;
+  background-color: #999;
 }
