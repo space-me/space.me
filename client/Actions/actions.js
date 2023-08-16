@@ -6,4 +6,4 @@ export const loginActionCreator = (loginData) => ({
   payload: loginData,
 });
 
-export default actions;
+// export default actions;
