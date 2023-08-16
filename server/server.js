@@ -3,7 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 // import routers
-const nasaImgRouter = require('./Routers/nasaImg.js');
+const { NasaImgRouter } = require('./Routers/NasaApiRouter.js');
+const { UserRouter } = require('./Routers/UserRouter.js');
+
+const db = require('./database/UserModel.js');
 
 const host = '0.0.0.0';
 const PORT = process.env.PORT || 3000;
@@ -12,7 +15,10 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/api', NasaImgRouter);
+app.use('/user', UserRouter);
 
 // Serve static assets
 app.use('/assets', express.static(path.resolve(__dirname, '../assets')));
@@ -21,8 +27,6 @@ app.use('/assets', express.static(path.resolve(__dirname, '../assets')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
-
-app.use('/spaceImg', nasaImgRouter);
 
 // Catch-all route
 app.get('*', (req, res) => {
