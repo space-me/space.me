@@ -1,10 +1,12 @@
 import * as types from '../Constants/actionTypes';
 
-const initialState = {};
+
+const initialState = {
+};
 
 const nasaReducer = (state = initialState, action) => {
-	switch (action.type) {
-	}
+  switch (action.type) {
+  }
 };
 
 export default nasaReducer;

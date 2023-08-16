@@ -1,1 +1,2 @@
-// export const ACTION = "ACTION"
+// Login action type when user logs in
+export const LOGIN = 'LOGIN';
