@@ -1,15 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { loginActionCreator } from '../Actions/actions';
 
 // Login is a function that handles the login logic and renders the Login parent container
 function Login() {
-  // navigate is an instance of useNavigate that allows redirecting using React-Router
+  // navigate is an instance of useNavigate that redirects using React-Router
   const navigate = useNavigate();
+  // dispatch is an instance of useDispatch that dispatches actions to Redux reducers
   const dispatch = useDispatch();
   // userLogin retrieves email and password information and sends a POST request to frontend
   const userLogin = () => {
-    // init email and password as values of email and password input fields
+    // extract email and password values from input fields
     const email = document.forms['login']['email'].value;
     const password = document.forms['login']['password'].value;
     // send POST request to login endpoint
@@ -17,11 +19,11 @@ function Login() {
       method: 'POST',
       body: { email: email, password: password },
     })
-      // parse data from JSON into JS
-      .then((data) => data.json())
-      // then, dispatch action to userReducer
-      .then((data) => {
-        dispatch(data);
+      // parse response from JSON into JS
+      .then((response) => response.json())
+      // then, dispatch login action to userReducer with payload loginData
+      .then((loginData) => {
+        dispatch(loginActionCreator(loginData));
       })
       // throw new error if fetch request runs into any errors
       .catch((err) => {

@@ -1,5 +1,6 @@
 const express = require('express');
 const NasaImgRouter = express.Router();
+// const { NasaImgController } = require('../Controllers/NasaController.js');
 const { NasaImgController } = require('../Controllers/NasaController.js');
 
 NasaImgRouter.get('/apod', NasaImgController.picOfDay, (req, res) => {
