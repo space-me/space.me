@@ -5,7 +5,7 @@ import SmallTileContainer from '../Containers/SmallTileContainer.jsx';
 const Home = () => {
   const [bigImage, setBigImage] = useState(null);
   const [smallImages, setSmallImages] = useState(null);
-  
+
   useEffect(() => {
     async function fetchBigImage() {
       const response = await fetch('/api/apod');
@@ -15,7 +15,6 @@ const Home = () => {
     async function fetchSmallImages() {
       const response = await fetch('api/search');
       const data = await response.json();
-      console.log(data)
       setSmallImages(data);
     }
     fetchBigImage();
