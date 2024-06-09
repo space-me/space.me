@@ -1,83 +1,83 @@
-
 // const TOKEN = 'UoizyCJ9LAb16Izq5eFbLulx4xzDSvodXoRV2glO'; // each of these tokens has 1000 an hour
 const TOKEN = 'B3e2sWwsdoF0QZIP0TNd6PAHV2ALwDMB5uGbgFfx'; // newest token
 // const TOKEN = 'JhRxyugXdHZyjcua0oEXcxsLxWvjbxTwB2ZAuxmU'; // use this token next
 
 const NasaImgController = {
+  getData: async (req, res, next) => {
+    // const { query } = req.body;
+    const query = 'pluto';
+    try {
+      const response = await fetch(
+        `https://images-api.nasa.gov/search?q=${query}&media_type=image`,
+        {}
+      );
+      if (response.ok) {
+        const data = await response.json();
 
- getData: async (req, res, next) => {
-  // const { query } = req.body;
-    const query = 'pluto'
-  try {
-    
-    const response = await fetch(`https://images-api.nasa.gov/search?q=${query}&media_type=image`, {});
-    if (response.ok) {
-      const data = await response.json();
-
-      const results = [];
-      for(let i =0; i< 20; i++){
-        //fetch the url that contains the array of different image sizes
-        let imagesArrayFetch = await fetch(data.collection.items[i].href, {})
-        let imagesArray = await imagesArrayFetch.json()
-        if(imagesArray===null){
-          return next({
-            log: `Express error handler caught unknown middleware error: ERROR : ${error}`,
-            status: 500,
-            message:{
-              err:'something went wrong on the server end'
-            }
-          })
+        const results = [];
+        for (let i = 0; i < 20; i++) {
+          //fetch the url that contains the array of different image sizes
+          let imagesArrayFetch = await fetch(data.collection.items[i].href, {});
+          let imagesArray = await imagesArrayFetch.json();
+          if (imagesArray === null) {
+            return next({
+              log: `Express error handler caught unknown middleware error: ERROR : ${error}`,
+              status: 500,
+              message: {
+                err: 'something went wrong on the server end',
+              },
+            });
+          }
+          results.push({
+            title: data.collection.items[i].data[0].title,
+            thumbnailImage: data.collection.items[i].links[0].href,
+            largeImage: imagesArray[1],
+            description: data.collection.items[i].data[0].description,
+          });
         }
-        results.push({
-          title: data.collection.items[i].data[0].title,
-          thumbnailImage: data.collection.items[i].links[0].href,
-          largeImage: imagesArray[1],
-          description: data.collection.items[i].data[0].description,
-        })
-      }
 
-      res.locals.resultsObject = results;
-      // res.locals.resultsObject = data;
-      
-      return next();
-    } else {
-      throw new Error(`NASA API request failed with status ${response.status}`);
+        res.locals.resultsObject = results;
+        // res.locals.resultsObject = data;
+
+        return next();
+      } else {
+        throw new Error(
+          `NASA API request failed with status ${response.status}`
+        );
+      }
+    } catch (error) {
+      return next({
+        log: `Express error handler caught unknown middleware error: ERROR : ${error}`,
+        status: 500,
+        message: {
+          err: 'something went wrong on the server end',
+        },
+      });
     }
-  } catch (error) {
-    console.log('caught error', error);
-    return next({
-      log: `Express error handler caught unknown middleware error: ERROR : ${error}`,
-      status: 500,
-      message:{
-        err:'something went wrong on the server end'
-      }
-    });
-  }
-},
+  },
 
-picOfDay: async (req, res, next) => {
-
-  try {
-    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${TOKEN}`);
-    const data = await response.json(); // Parse JSON data from the response
-    res.locals.returnObject = {
-      title: data.title,
-      image: data.hdurl,
-      description: data.explanation
-    };
-    return next();
-  } catch (error) {
-    console.log('caught error', error);
-    return next({
-      log: `Express error handler caught unknown middleware error: ERROR : ${error}`,
-      status: error.status || 400,
-      message: {
-        err: "ruh'oh, something went wrong."
-      }
-    });
-  }
-},
-
+  picOfDay: async (req, res, next) => {
+    try {
+      const response = await fetch(
+        `https://api.nasa.gov/planetary/apod?api_key=${TOKEN}`
+      );
+      const data = await response.json(); // Parse JSON data from the response
+      res.locals.returnObject = {
+        title: data.title,
+        image: data.hdurl,
+        description: data.explanation,
+      };
+      return next();
+    } catch (error) {
+      return next({
+        log: `Express error handler caught unknown middleware error: ERROR : ${error}`,
+        status: error.status || 400,
+        message: {
+          err: "ruh'oh, something went wrong.",
+        },
+      });
+    }
+  },
 };
 
 module.exports = { NasaImgController };
