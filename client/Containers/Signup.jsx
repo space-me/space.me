@@ -33,15 +33,12 @@ function Signup() {
         // then, dispatch login action to userReducer with payload loginData
         .then((signupData) => {
           if (!signupData || !signupData.err) {
-            // console.log('signupData from Login.jsx', signupData);
             dispatch(loginActionCreator(signupData));
             navigate('/');
           }
         })
         // throw new error if fetch request runs into any errors
-        .catch((err) => {
-          console.log('Error logging user in:', err);
-        });
+        .catch((err) => console.error('Error logging user in:', err));
     }
   };
 

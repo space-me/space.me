@@ -24,9 +24,8 @@ function FavStar({ imageData }) {
           href: imageData.largeImage,
           description: imageData.description,
         }),
-      }).catch((err) => console.log('Error adding a favorite:', err));
+      }).catch((err) => console.error('Error adding a favorite:', err));
       const data = await response.json();
-      console.log('data on line 26 of FavStar is:', data);
       dispatch(loginActionCreator(data));
     }
     saveFav();

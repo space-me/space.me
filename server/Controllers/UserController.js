@@ -12,8 +12,6 @@ const UserController = {
     try {
       const response = await db.query(checkForUser, [username, email]);
       const userCount = response.rows[0].count; // Extract the count value
-      console.log('userCount: ', userCount);
-      // console.log("userCount OR  response.rows[0].count: ", userCount);
       if (userCount !== '0') {
         console.log('username/ email taken');
         res.sendStatus(401);
@@ -38,7 +36,6 @@ const UserController = {
         email,
         hashedPassword,
       ]);
-      // console.log("line 36: ", response[0]);
       const grabUserIdQuery = 'SELECT id FROM member WHERE email = $1';
       const idResponse = await db.query(grabUserIdQuery, [email]);
       res.locals.userID = idResponse.rows[0].id;
@@ -58,9 +55,6 @@ const UserController = {
 
   verifyUser: async (req, res, next) => {
     const { email, password } = req.body;
-    console.log('body ', req.body);
-    console.log('email: ', email);
-    console.log('password: ', password);
 
     //Verify the username exists before checking password
     const findUser = 'SELECT * FROM member WHERE email = $1';
@@ -69,16 +63,11 @@ const UserController = {
       const hashedPassword = response.rows[0].password;
       // if username is true and (bycrypt.compare(password and username.password)) is true
       const passwordFromDB = await bcrypt.compare(password, hashedPassword);
-      console.log('passwordFromDB true or false: ', passwordFromDB);
 
       if (email && passwordFromDB) {
         const grabUserIdQuery = 'SELECT id FROM member WHERE email = $1';
         const idResponse = await db.query(grabUserIdQuery, [email]);
         res.locals.userID = idResponse.rows[0].id;
-        console.log(
-          'res.locals.userID from verify function: ',
-          res.locals.userID
-        );
         return next();
       } else {
         return next({
@@ -99,10 +88,6 @@ const UserController = {
       });
     }
   },
-
-  // ---------------------------------- FORGOT PASSWORD FUNCTION -----------------------------------------------------
-  // forgotPassword: (req, res, next) => {},
-  //Stretch Feature for now.
 };
 
 module.exports = { UserController };

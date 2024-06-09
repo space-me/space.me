@@ -28,7 +28,6 @@ function Login() {
       // then, dispatch login action to userReducer with payload loginData
       .then((loginData) => {
         if (!loginData || !loginData.err) {
-          // console.log('logindata from Login.jsx', loginData);
           dispatch(loginActionCreator(loginData));
           navigate('/');
         }
